@@ -23,10 +23,11 @@ jobs:
           pip install nbconvert
 
       - name: Convert Notebooks to HTML
+        #  --execute --allow-errors
         run: |
           mkdir html
           for notebook in notebooks/*.ipynb; do
-            jupyter nbconvert --to html $notebook --output-dir html --execute --allow-errors
+            jupyter nbconvert --to html $notebook --output-dir html  
           done
 
       - name: Deploy to GitHub Pages
