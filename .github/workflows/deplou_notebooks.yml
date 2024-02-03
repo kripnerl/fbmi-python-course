@@ -29,8 +29,13 @@ jobs:
           for notebook in notebooks/*.ipynb; do
             jupyter nbconvert --to html $notebook --output-dir html  
           done
-          ls 
+          pwd
           ls html
+
+      - name: List HTML directory
+        run: |
+          pwd
+          ls -la html
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
@@ -38,8 +43,4 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./html
           publish_branch: gh-pages  # Target branch for HTML files
-          run: |
-            pwd
-            ls 
-            ls html
 
