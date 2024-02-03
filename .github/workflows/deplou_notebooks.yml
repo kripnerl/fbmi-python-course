@@ -25,22 +25,22 @@ jobs:
       - name: Convert Notebooks to HTML
         #  --execute --allow-errors
         run: |
-          mkdir html
+          mkdir publish
           for notebook in notebooks/*.ipynb; do
-            jupyter nbconvert --to html $notebook --output-dir html  
+            jupyter nbconvert --to html $notebook --output-dir publish  
           done
           pwd
-          ls html
+          ls publish
 
       - name: List HTML directory
         run: |
           pwd
-          ls -la html
+          ls -la publish
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./html
+          publish_dir: ./publish
           publish_branch: gh-pages  # Target branch for HTML files
 
